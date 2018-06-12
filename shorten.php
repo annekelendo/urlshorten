@@ -5,12 +5,9 @@ $newurl = "http://alnd.uv042.com:8080/shorten/"; //текущий адрес х�
 $url = $_POST['url'];
 if ($_POST['submit']) {
 echo "<br><a href='$newurl$sl' target='_blank'>$newurl$sl</a>"; //выводим короткую ссылку
-$f = fopen("$sl.php", "w"); //создать файл с именем короткой ссылки
-fwrite($f, "<?php header('Location: $url') ?>"); //записать юрл для редиректа
-fclose($f);
 $fh = fopen(".htaccess", "a"); //открыть .htaccess для записи
 fwrite($fh, "
-RewriteRule ^$sl$ http://alnd.uv042.com:8080/shorten/$sl.php"); //записать правило редиректа
+RewriteRule ^$sl$ $url"); //записать правило редиректа
 fclose($fh);
 }
 ?>
